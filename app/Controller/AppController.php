@@ -31,4 +31,33 @@ App::uses('Controller', 'Controller');
  * @link		https://book.cakephp.org/2.0/en/controllers.html#the-app-controller
  */
 class AppController extends Controller {
+  
+  // Utilizar en la sesión AuthComponent para la autenticación de usuario
+ public $components = array(
+      'Session',
+      'Auth' => array(
+          'loginRedirect' => array(
+              'controller' => 'users',
+              'action' => 'index'
+          ),
+          'logoutRedirect' => array(
+              'controller' => 'pages',
+              'action' => 'display',
+              'home'
+          ),
+          'authenticate' => array(
+              'Form' => array(
+                  'passwordHasher' => 'Blowfish'
+              )
+          )
+      )
+  );
+
+  // No se requiere login para las siguientes vistas
+  public function beforeFilter() {
+    //Traer info de los usuarios a los controladores
+    $this->set('userData', $this->Auth->user());
+    //No requiere de inicio de sesión
+    $this->Auth->allow('logout');
+  }
 }
