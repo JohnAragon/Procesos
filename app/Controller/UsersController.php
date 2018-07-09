@@ -27,6 +27,7 @@ class UsersController extends AppController {
     }
     // Paginar usuarios creados
     public function index() {
+
         $this->User->recursive = 0;
         $this->set('users', $this->paginate());
     }
@@ -42,6 +43,8 @@ class UsersController extends AppController {
 
     //Creación de usuario
     public function add() {
+        Controller::loadModel('Roles');
+        $this->set('roles',  $this->Roles->find('list',array('fields' => array('Roles.nombre_rol'))));
         if ($this->request->is('post')) {
             $this->User->create();
             if ($this->User->save($this->request->data)) {

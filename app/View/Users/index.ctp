@@ -16,7 +16,7 @@
           <tr>
             <!--Visualizar usuarios paginados  -->
             <td><?php echo $user['User']['username'];?></td>
-              <td><?php echo $user['User']['role'];?></td>
+              <td><?php echo $user['Roles']['nombre_rol'];?></td>
               <td><?php echo $user['User']['created'];?></td>
               <td>
                   <?php echo $this->Html->link('Ver', array('controller' => 'users', 'action' => 'view', $user['User']['id']));?>
