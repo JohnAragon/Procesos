@@ -31,7 +31,7 @@ App::uses('Controller', 'Controller');
  * @link		https://book.cakephp.org/2.0/en/controllers.html#the-app-controller
  */
 class AppController extends Controller {
-  
+
   // Utilizar en la sesión AuthComponent para la autenticación de usuario
  public $components = array(
       'Session',
@@ -55,9 +55,10 @@ class AppController extends Controller {
 
   // No se requiere login para las siguientes vistas
   public function beforeFilter() {
+    $this->Auth->authError = "Has cerrado la sesión.";
     //Traer info de los usuarios a los controladores
     $this->set('userData', $this->Auth->user());
     //No requiere de inicio de sesión
-    $this->Auth->allow('logout');
+    $this->Auth->allow('logout', 'login');
   }
 }

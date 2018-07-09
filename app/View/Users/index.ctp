@@ -30,6 +30,17 @@
         <?php  endforeach; ?>
         </tbody>
       </table>
-
+      <?php
+              //***********************************************************pagination section*********************************************************************
+              echo $this->Paginator->first("<< ", array('class' => 'btn btn-default btn-sm'));
+              if($this->Paginator->hasPrev()) {
+                echo $this->Paginator->prev(" < ", array('class' => 'btn btn-default btn-sm'));
+              }
+              echo $this->Paginator->numbers(array('modulus' => 5,'first' => 2, 'last' => 2 ,'separator' => '','class' => 'btn btn-default btn-sm'));
+              if($this->Paginator->hasNext()) {
+                echo $this->Paginator->next(" > ", array('class' => 'btn btn-default btn-sm'));
+              }
+              echo $this->Paginator->last(" >>", array('class' => 'btn btn-default btn-sm'));
+      ?>
 
 </div>

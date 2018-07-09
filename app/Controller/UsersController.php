@@ -10,6 +10,7 @@ class UsersController extends AppController {
     public function beforeFilter() {
         parent::beforeFilter();
         $this->Auth->allow('add','edit','login','logout');
+        $this->Auth->authError = "Please log in first in order to preform that action.";
     }
     //logiin de usuarios
     public function login() {
@@ -29,6 +30,11 @@ class UsersController extends AppController {
     public function index() {
 
         $this->User->recursive = 0;
+        $this->paginate = array(
+          'limit' => 10, // elementos por pagina
+          //'conditions' => $condiciones, // arreglo con del filtro de url, si esta vacio esta hace un find all
+          'order' => array('User.created' => 'desc')
+        );
         $this->set('users', $this->paginate());
     }
 
