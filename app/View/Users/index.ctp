@@ -1,8 +1,18 @@
-<div>
-
-  <?php echo $this->Html->link('Agregar usuario', array('controller' => 'users', 'action' => 'add'));?>
-
-      <table>
+<div class="row">
+    <div class="col-12">
+      <?php echo $this->Html->link('Agregar usuario', array(
+                    'controller' => 'users',
+                    'action' => 'add'),
+                    array('class'=>'btn btn-success',
+                      'type'=>'button',
+                      'escape'=> false)
+                  );
+      ?>
+    </div>
+    <br>
+    <br>
+      <div class="col-12">
+      <table class="table table-striped">
         <thead>
           <tr>
             <th>Usuario</th>
@@ -19,11 +29,27 @@
               <td><?php echo $user['Roles']['nombre_rol'];?></td>
               <td><?php echo $user['User']['created'];?></td>
               <td>
-                  <?php echo $this->Html->link('Ver', array('controller' => 'users', 'action' => 'view', $user['User']['id']));?>
-                  <?php echo $this->Html->link('Editar',array('controller' => 'users', 'action' => 'edit', $user['User']['id']));?>
-                  <?php echo $this->Form->postLink('Borrar',array('controller' => 'users', 'action' => 'delete', $user['User']['id']),
-                    array('escape' => false),
-                    '¿Está seguro?. Borrará todos los registros del usuario'
+                  <?php echo $this->Html->link('Ver', array(
+                    'controller' => 'users',
+                    'action' => 'view', $user['User']['id']),
+                    array('class'=>'btn btn-primary btn-sm',
+                    'type'=>'button',
+                    'escape'=>false)
+                  );?>
+                  <?php echo $this->Html->link('Editar',array(
+                    'controller' => 'users',
+                    'action' => 'edit', $user['User']['id']),
+                    array('class'=>'btn btn-success btn-sm',
+                    'type'=>'button',
+                    'escape'=>false)
+                  );?>
+                  <?php echo $this->Form->postLink('Borrar',array(
+                    'controller' => 'users',
+                    'action' => 'delete', $user['User']['id']),
+                    array('class'=>'btn btn-danger btn-sm',
+                      'type'=>'button',
+                      'escape'=>false),
+                      '¿Está seguro?. Borrará todos los registros del usuario'
                   );?>
               </td>
           </tr>
@@ -42,5 +68,5 @@
               }
               echo $this->Paginator->last(" >>", array('class' => 'btn btn-default btn-sm'));
       ?>
-
+    </div>
 </div>

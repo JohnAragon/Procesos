@@ -4,6 +4,13 @@
   <h3>Tipo de Usuario: <?php echo $user['Roles']['nombre_rol']?></h3>
   <h3>Creado: <?php echo $user['User']['created']?></h3>
   <h3>Modificado: <?php echo $user['User']['modified']?></h3>
-  <?php echo $this->Html->link('Volver', array('controller' => 'users', 'action' => 'index'));?>
+  <?php echo $this->Html->link('Volver', array(
+                'controller' => 'users',
+                'action' => 'index'),
+                array('class'=>'btn btn-success',
+                  'type'=>'button',
+                  'escape'=> false)
+              );
+  ?>
 
 </div>

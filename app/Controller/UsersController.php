@@ -10,7 +10,7 @@ class UsersController extends AppController {
     public function beforeFilter() {
         parent::beforeFilter();
         $this->Auth->allow('add','edit','login','logout');
-        $this->Auth->authError = "Please log in first in order to preform that action.";
+        $this->Auth->authError = "Por favor inicie sesión.";
     }
     //logiin de usuarios
     public function login() {
@@ -28,7 +28,7 @@ class UsersController extends AppController {
     }
     // Paginar usuarios creados
     public function index() {
-
+        $this->layout='menu_layout';
         $this->User->recursive = 0;
         $this->paginate = array(
           'limit' => 10, // elementos por pagina
@@ -40,6 +40,7 @@ class UsersController extends AppController {
 
     // Ver info usuario
     public function view($id = null) {
+        $this->layout='menu_layout';
         $this->User->id = $id;
         if (!$this->User->exists()) {
             throw new NotFoundException(__('Usuario invalido'));
@@ -49,6 +50,8 @@ class UsersController extends AppController {
 
     //Creación de usuario
     public function add() {
+        $this->layout='menu_layout';
+        //Traer listado de roles
         Controller::loadModel('Roles');
         $this->set('roles',  $this->Roles->find('list',array('fields' => array('Roles.nombre_rol'))));
         if ($this->request->is('post')) {
@@ -65,6 +68,10 @@ class UsersController extends AppController {
 
     //Editar el usuario
     public function edit($id = null) {
+        $this->layout='menu_layout';
+        //Traer listado de roles
+        Controller::loadModel('Roles');
+          $this->set('roles',  $this->Roles->find('list',array('fields' => array('Roles.nombre_rol'))));
         $this->User->id = $id;
         if (!$this->User->exists()) {
             throw new NotFoundException(__('Usuario Invalido'));
