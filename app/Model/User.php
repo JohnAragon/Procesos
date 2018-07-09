@@ -31,12 +31,12 @@ class User extends AppModel {
             )
         )
     );
-    
+
   //Relación de roles
   public $belongsTo = array(
     'Roles' => array(
               'className' => 'Roles',
-              'foreignKey' => 'id_rol'
+                'foreignKey' => 'id_rol'
           )
   );
 }
